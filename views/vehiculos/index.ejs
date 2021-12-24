@@ -1,0 +1,47 @@
+<%- include ../layouts/header.ejs %> 
+        <br>
+        <br>
+        <a href="/vehiculos/crear" class="btn btn-primary" type="button">Agregar vehiculo</a>
+        <br>
+        <br>
+        <table class="table table-light">
+            <thead class="thead-light">
+                <tr>
+                    <th>Placa</th>
+                    <th>Modelo</th>
+                    <th>Año</th>
+                    <th>Marca</th>
+                    <th>Estado</th>
+                    <th>Imagen</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% for( let vehiculo = 0; vehiculo < vehiculos.length; vehiculo++ ) { %>
+                    <tr>
+                        <td> <%=vehiculos[vehiculo].placa %>  </td>
+                        <td> <%=vehiculos[vehiculo].modelo %> </td>
+                        <td> <%=vehiculos[vehiculo].año %>  </td>
+                        <td> <%=vehiculos[vehiculo].marca %>  </td>
+                        <td> <%=vehiculos[vehiculo].estado %>  </td>
+                        <td>
+                            <img class="img-thumbnail" width="100" src="images/<%=vehiculos[vehiculo].imagen %>" alt="">
+                             
+                        </td>
+                        <td> <div class="btn-group-vertical" role="group" aria-label="Vertical button group">
+                            <form class="form-inline" method="get" action="/vehiculos/editar/<%=vehiculos[vehiculo].placa %>">
+                                <button class="btn btn-warning" type="submit">Editar</button>
+                            </form> 
+                        </div> | 
+                            <div class="btn-group-vertical" role="group" aria-label="Vertical button group">
+                                <form class="form-inline" method="post" action="/vehiculos/eliminar/<%=vehiculos[vehiculo].placa %>">
+                                    <button class="btn btn-danger" type="submit">Borrar</button>
+                                </form>
+                            </div>
+                             </td>
+                    </tr>
+                
+                <% } %>
+            </tbody>
+        </table>
+<%- include ../layouts/footer.ejs %> 
